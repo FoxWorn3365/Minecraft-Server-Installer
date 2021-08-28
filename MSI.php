@@ -197,12 +197,10 @@ echo "\nFaccio partire il server? [Si / No]";
 $rep = readline();
 
 if ($rep == "No") {
-   echo "\nOk, abortisco!\nGrazie per avermi utilizzato <3";
+   echo "\nOk, abortisco!\nGrazie per avermi utilizzato <3\n\n";
    exit;
 } else {
-  $ksid = "start.sh";
-   chmod("$dir$ksid", 0777);
-   shell_exec("cd $dir");
-   shell_exec("php start.php");
+  echo "\n\nStarto il server Minecraft seguendo le tue direttive...";
+  shell_exec("java -Xmx$max -Xms$min -jar$dir$server-version.jar$gui");
 }
 
