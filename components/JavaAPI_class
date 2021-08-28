@@ -1,0 +1,38 @@
+<?php
+namespace "JavaAPI";
+class JavaAPI {
+   function getVersion() {
+      $j = shell_exec("java -version 2>&1");
+      $jar = explode('"', $j[0]);
+      $java = $jar[1];
+      return $java;
+   }
+ 
+   function setVersion($v) {
+      shell_exec('sudo update-java-alternatives -s $(sudo update-java-alternatives -l | grep  ' . $v . ' | cut -d " " -f1)');
+   }
+
+   function getAllVersion() {
+       $javadir = shell_exec('echo $JAVA_HOME');
+       $javaar = explode("/", $javadir);
+       $javaaarco = (count($javaar) - 1);
+       $loop = 1;
+       while ($loop < $javaaarco) {
+           $jvre = $javaar[$loop] . '/';
+           $jar = "$jar$jvre";
+           $loop++;
+       }
+       
+       $ret = shell_run("ls $jar");
+       return $ret;
+   }
+
+   function ifExistVersion($v) {
+       $possibile = $this->getAllVersion();
+       if (strpos($v, $possible) !== false) {
+          return true;
+       } else {
+          return false;
+       }
+   }
+}
