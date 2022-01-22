@@ -169,7 +169,6 @@ if (strpos($javaa, $jar) !== false) {
 $vs = shell_exec("ls /usr/lib/jvm/");
 if (stripos($vs, $jar) !== true) {
    echo "Non hai installata la versione richiesta di Java (Java$jar)!\nVai su https://fcosma.it/GitHub/MSI/help?error=java&do=install&v=$jar";
-exit;
 } else {
 shell_exec('sudo update-java-alternatives -s $(sudo update-java-alternatives -l | grep  ' . $jar . ' | cut -d " " -f1)');
 
