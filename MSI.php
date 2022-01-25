@@ -128,32 +128,32 @@ echo "\n\nSto installando il server, ci potrebbe volere un po!";
 
 echo "Pronto per l'installazione!";
 
-echo "\n[=-----] Creazione della directory";
+echo "\n[=------] Creazione della directory";
 
 sleep(0.5);
 
-echo "\n[==----] Creazione del file eula.txt";
+echo "\n[==-----] Creazione del file eula.txt";
 
 $s = "eula.txt";
 $h = fopen("$dir$s", "w+");
 fwrite($h, "eula=true");
 fclose($h);
 
-echo "\n[===---] Recupero del file .jar del server";
+echo "\n[===----] Recupero del file .jar del server";
 
 echo "\nFetching jar file from https://serverjars.com/api/fetchJar/$server/$version";
 shell_exec("wget https://serverjars.com/api/fetchJar/$server/$version");
 shell_exec("mv $version $server-$version.jar");
 shell_exec("mv $server-$version.jar $dir");
 
-echo "\n[====--] Creazione del file di start";
+echo "\n[====---] Creazione del file di start";
 
 $b = "start.sh";
 $h = fopen("$dir$b", "w+");
 fwrite($h, "java -Xmx$max -Xms$min -jar $server-$version.jar$gui");
 fclose($h);
 
-echo "\n[=====-] Impostando Java";
+echo "\n[=====--] Impostando Java";
 
 $java = shell_exec("java -version 2>&1");
 
@@ -183,11 +183,28 @@ if (stripos($java24, $jar) === false) {
 }
 }
 
+echo "[======-] Creazione del config locale di MSI del server";
+
+  $fo = '
+  {
+  "MSI":true,
+  "type":"' .$server. '",
+  "version":"' .$version.'",
+  "maxram":"' .$max . '",
+  "minram":"' . $min. '",
+  "java":$jar,
+  "author":"FoxWorn3365"
+  }';
+
+  $h = fopen($dir. 'server.json', "w+");
+  fwrite($h, $fo);
+  fclose($h);
+
 echo "[======] Creazione dell'Auto-Updater";
 
 $hs = "start.php";
 
-shell_exec("wget https://s1.fcosma.it/API/MSI/start");
+shell_exec("wget https://raw.githubusercontent.com/FoxWorn3365/Minecraft-Server-Installer/main/start.php");
 $suad = "start.php";
 shell_exec("mv start $dir$suad");
 
