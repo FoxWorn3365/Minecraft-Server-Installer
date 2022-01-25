@@ -18,7 +18,7 @@ if ($latest->response->version !== $server->version) {
   echo "[MSI]#[Choise] > [1] Aggiorna il server adesso\n";
   echo "[MSI]#[Choise] > [2] Non aggiornare il server adesso\n";
   echo "[MSI]#[Choise] > [n / c / 3] Non aggiornare mai questo server\n";
-  $old = "$type-$version.jar"
+  $old = "$type-$version.jar";
   $r = readline();
   if ($r == "1") {
     unlink($old);
