@@ -15,8 +15,8 @@ echo "\n\nATTENZIONE: Non eseguire mai questo file dalla directory dove vuoi ins
 echo "\n\nPer iniziare l'installazione digita start, invece per aggiornare digita update ";
 $do = readline();
 if ($do === "update") {
-   echo "Scarico l'aggiornamento da API.fcosma.it/MSI/latest";
-   shell_exec("wget https://s1.fcosma.it/API/MSI/latest");
+   echo "Scarico l'aggiornamento da GitHub -> FoxWorn3365/Minecraft-Server-Installer";
+   shell_exec("wget https://raw.githubusercontent.com/FoxWorn3365/Minecraft-Server-Installer/main/MSI.php");
    shell.exec("mv latest MSI.php");
    echo "Operazione completata! File salvato in " . __DIR__ . "MSI.php";
 exit;
@@ -168,7 +168,7 @@ if (strpos($javaa, $jar) !== false) {
 //Verifichiamo la versione sia già installata
 $vs = shell_exec("ls /usr/lib/jvm/");
 if (stripos($vs, $jar) !== true) {
-   echo "Non hai installata la versione richiesta di Java (Java$jar)!\nVai su https://fcosma.it/GitHub/MSI/help?error=java&do=install&v=$jar";
+   echo "Non hai installata la versione richiesta di Java (Java$jar)!\nVai su https://fcosma.it/MSI/help?error=java&do=install&v=$jar";
 } else {
 shell_exec('sudo update-java-alternatives -s $(sudo update-java-alternatives -l | grep  ' . $jar . ' | cut -d " " -f1)');
 
