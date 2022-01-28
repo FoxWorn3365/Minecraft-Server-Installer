@@ -46,5 +46,5 @@ if ($latest->response->version !== $server->version) {
 }
 } else {
   echo "[MSI]#[AutoUpdater] > Avvio del server...";
-  shell.exec("./start.sh")
+  shell.exec("./start.sh");
 }
