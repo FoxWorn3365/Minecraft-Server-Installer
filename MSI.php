@@ -1,5 +1,5 @@
 <?php
-$latest = file_get_contents("https://s1.fcosma.it/API/MSI/version?t=NOJSON");
+$latest = file_get_contents("https://raw.githubusercontent.com/FoxWorn3365/Minecraft-Server-Installer/main/version.fox");
 
 if (empty($latest)) {
    $latest = "null";
@@ -8,7 +8,7 @@ if (empty($latest)) {
 echo "\n==========";
 echo "\nMinecraft Server Installer";
 echo "\n==========";
-echo "\n\nMade by: FoxWorn3365\nVersion: 0.7\nLatest version: $latest";
+echo "\n\nMade by: FoxWorn3365\nVersion: 0.9\nLatest version: $latest";
 
 echo "\n\nATTENZIONE: Non eseguire mai questo file dalla directory dove vuoi installare il server!";
 
@@ -16,8 +16,8 @@ echo "\n\nPer iniziare l'installazione digita start, invece per aggiornare digit
 $do = readline();
 if ($do === "update") {
    echo "Scarico l'aggiornamento da GitHub -> FoxWorn3365/Minecraft-Server-Installer";
+   unlink("MSI.php");
    shell_exec("wget https://raw.githubusercontent.com/FoxWorn3365/Minecraft-Server-Installer/main/MSI.php");
-   shell.exec("mv latest MSI.php");
    echo "Operazione completata! File salvato in " . __DIR__ . "MSI.php";
 exit;
 }
@@ -168,7 +168,7 @@ if (strpos($javaa, $jar) !== false) {
 //Verifichiamo la versione sia già installata
 $vs = shell_exec("ls /usr/lib/jvm/");
 if (stripos($vs, $jar) !== true) {
-   echo "Non hai installata la versione richiesta di Java (Java$jar)!\nVai su https://fcosma.it/MSI/help?error=java&do=install&v=$jar";
+   echo "Non hai installata la versione richiesta di Java (Java$jar)!\nVai su https://github.com/FoxWorn3365/Minecraft-Server-Installer/wiki";
 } else {
 shell_exec('sudo update-java-alternatives -s $(sudo update-java-alternatives -l | grep  ' . $jar . ' | cut -d " " -f1)');
 
