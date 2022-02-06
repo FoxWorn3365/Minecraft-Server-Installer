@@ -206,7 +206,7 @@ $hs = "start.php";
 
 shell_exec("wget https://raw.githubusercontent.com/FoxWorn3365/Minecraft-Server-Installer/main/start.php");
 $suad = "start.php";
-shell_exec("mv start $dir$suad");
+shell_exec("mv start.php $dir$suad");
 
 echo "\n\nServer installato con successo!";
 echo "\nFaccio partire il server? [Si / No]";
