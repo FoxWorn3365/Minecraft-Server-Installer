@@ -217,6 +217,6 @@ if ($rep == "No") {
    exit;
 } else {
   echo "\n\nStarto il server Minecraft seguendo le tue direttive...";
-  shell_exec("java -Xmx$max -Xms$min -jar$dir$server-version.jar$gui");
+  shell_exec("java -Xmx$max -Xms$min -jar$dir$server-$version.jar$gui");
 }
 
