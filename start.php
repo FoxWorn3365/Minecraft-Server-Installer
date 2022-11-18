@@ -8,7 +8,7 @@ if (!file_exists("server.json")) {
 $server = json_decode(file_get_contents("server.json"));
 
 //recupero l'ultima versione
-$latest = json_decode(file_get_contents("https://serverjars.com/api/fetchLatest/$server->type"));
+$latest = json_decode(file_get_contents("https://serverjars.com/api/fetchLatest/$server->category/$server->type"));
 
 if (!file_exists(".noup")) {
 // Verifico che le versioni coincidino
@@ -24,15 +24,15 @@ if ($latest->response->version !== $server->version) {
   if ($r == "1") {
     unlink($old);
     echo "[MSI]#[DownloadManager] > Scaricando l'ultima versione da serverjars.com";
-    shell.exec("wget https://serverjars.com/api/fetchJar/$server->type");
+    shell_exec("wget https://serverjars.com/api/fetchJar/$server->category/$server->type");
     $txt = file_get_contents("start.sh");
     $h = fopen("start.sh", "w+");
     fwrite($h, str_replace($old, $latest->response->file, $txt));
     fclose($h);
-    shell.exec("./start.sh");
+    shell_exec("./start.sh");
   } elseif ($r == "2") {
     echo "[MSI]#[AutoUpdater] > Ok, avvio il server";
-    shell.exec("./start.sh");
+    shell_exec("./start.sh");
   } else {
     echo "[MSI]#[AutoUpdater] > Ok, provvedo ad ingorare il server. Per riattivare gli aggiornamenti, elimina il file .noup nella cartella del server!";
     $h = fopen(".noup", "w+");
