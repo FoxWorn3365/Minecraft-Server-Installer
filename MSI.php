@@ -192,6 +192,7 @@ echo "[======-] Creazione del config locale di MSI del server";
   {
   "MSI":true,
   "type":"' .$server. '",
+  "category":"' . $tt . '",
   "version":"' .$version.'",
   "maxram":"' .$max . '",
   "minram":"' . $min. '",
