@@ -1,5 +1,6 @@
 <?php
 $latest = file_get_contents("https://raw.githubusercontent.com/FoxWorn3365/Minecraft-Server-Installer/main/version.fox");
+$arr = array('forge' => 'modded', 'fabric' => 'modded', 'mohist' => 'modded', 'spigot' => 'servers', 'bukkit' => 'servers', 'paper' => 'servers', 'purpur' => 'servers', 'tuinity' => 'servers', 'sponge' => 'servers', 'snapshot' => 'vanilla', 'vanilla' => 'vanilla');
 
 if (empty($latest)) {
    $latest = "null";
@@ -57,9 +58,11 @@ $server = readline();
 if (empty($server)) {
    die("Risposta vuota, abortisco...\n");
 }
+
+$tt = $arr[$server];
 echo "\nTipo selezionato: $server";
 echo "\n----------\nEcco le versioni che ho trovato per il tipo da te specificato:\n\n";
-$v = json_decode(file_get_contents("https://serverjars.com/api/fetchAll/$server/"));
+$v = json_decode(file_get_contents("https://serverjars.com/api/fetchAll/$tt/$server/"));
 
 foreach ($v->response as $a) {
    echo "$a->version\n";
@@ -141,8 +144,8 @@ fclose($h);
 
 echo "\n[===----] Recupero del file .jar del server";
 
-echo "\nFetching jar file from https://serverjars.com/api/fetchJar/$server/$version";
-shell_exec("wget https://serverjars.com/api/fetchJar/$server/$version");
+echo "\nFetching jar file from https://serverjars.com/api/fetchJar/$tt/$server/$version";
+shell_exec("wget https://serverjars.com/api/fetchJar/$tt/$server/$version");
 shell_exec("mv $version $server-$version.jar");
 shell_exec("mv $server-$version.jar $dir");
 
